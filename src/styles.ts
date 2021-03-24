@@ -36,7 +36,7 @@ export const ColumnTitle = styled.div`
   font-weight:bold;
 `
 interface AddItemButtonProps {
-  dark?: false;
+  dark?: boolean;
 }
 
 export const AddItemButton = styled.button<AddItemButtonProps>`
