@@ -7,10 +7,16 @@ import { ColumnContainer, ColumnTitle } from "./styles";
 interface ColumnProps {
   text: string;
   index: number;
+  id: string;
 }
 
-export const Column: React.FC<ColumnProps> = ({ text, children, index }) => {
-  const { state } = useAppState();
+export const Column: React.FC<ColumnProps> = ({
+  text,
+  children,
+  index,
+  id,
+}) => {
+  const { state, dispatch } = useAppState();
   return (
     <ColumnContainer>
       <ColumnTitle> {text}</ColumnTitle>
@@ -19,7 +25,9 @@ export const Column: React.FC<ColumnProps> = ({ text, children, index }) => {
       ))}
       <AddNewItem
         toggleButtonText={"+ Add another list"}
-        onAdd={console.log}
+        onAdd={(text) =>
+          dispatch({ type: "ADD_TASK", payload: { listId: id, text } })
+        }
         dark
       />
     </ColumnContainer>
